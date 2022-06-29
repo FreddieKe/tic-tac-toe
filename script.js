@@ -17,25 +17,43 @@ function playerPlay() {
     return playerGesture;
 }
 
-function playGame(computerChoice,playerChoice) {
+function playRound(computerChoice,playerChoice) {
     if (computerChoice === playerChoice) { //checks if computer and player have  same hand
         console.log(`Computer: ${computerChoice} Player: ${playerChoice} - It\'s a draw!`);
     } else if ((computerChoice === 'rock' && playerChoice === 'scissors')||
     (computerChoice === 'scissors' && playerChoice === 'paper'||
     (computerChoice === 'paper' && playerChoice === 'rock'))) { //checks if computer has better hand
-        console.log(`Computer: ${computerChoice} Player: ${playerChoice} - Computer wins!`)
+        console.log(`Computer: ${computerChoice} Player: ${playerChoice} - Computer wins!`);
+        ++computerScore;
     } else if ((playerChoice === 'rock' && computerChoice === 'scissors')||
     (playerChoice === 'scissors' && computerChoice === 'paper'||
     (playerChoice === 'paper' && computerChoice === 'rock'))) { //checks if player has better hand
         console.log(`Computer: ${computerChoice} Player: ${playerChoice} - Player wins!`);
-    } else {console.log(`Computer: ${computerChoice} Player: ${playerChoice} I\'m sorry, I did not understand that.`)}
+        ++playerScore;
+    } else {
+        console.log(`Computer: ${computerChoice} Player: ${playerChoice} I\'m sorry, I did not understand that.`)
+    }
 }
 
-//game initialises 
-let computerChoice = computerPlay();
-let playerChoice = playerPlay();
-for (let i = 0; i < 5; i++) {
-    playGame(computerChoice,playerChoice)
-};
+let computerScore = 0
+let playerScore = 0
 
+//runs five rounds
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        let computerChoice = computerPlay();
+        let playerChoice = playerPlay();
+        playRound(computerChoice,playerChoice);
+    }
+    if (computerScore > playerScore) {
+        console.log(`Computer: ${computerScore} Player: ${playerScore} - Computer wins!`)
+    } else if (computerScore < playerScore) {
+        console.log(`Computer: ${computerScore} Player: ${playerScore} - Player wins!`)
+    } else {
+        console.log(`Computer: ${computerScore} Player: ${playerScore} - It's a draw!`)
+    }
+    computerScore = 0
+    playerScore = 0
+}
 
+playGame()
