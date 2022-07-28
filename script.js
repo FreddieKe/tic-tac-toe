@@ -35,25 +35,5 @@ function playRound(computerChoice,playerChoice) {
     }
 }
 
-let computerScore = 0
-let playerScore = 0
-
-//runs five rounds
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        let computerChoice = computerPlay();
-        let playerChoice = playerPlay();
-        playRound(computerChoice,playerChoice);
-    }
-    if (computerScore > playerScore) {
-        console.log(`Computer: ${computerScore} Player: ${playerScore} - Computer wins!`)
-    } else if (computerScore < playerScore) {
-        console.log(`Computer: ${computerScore} Player: ${playerScore} - Player wins!`)
-    } else {
-        console.log(`Computer: ${computerScore} Player: ${playerScore} - It's a draw!`)
-    }
-    computerScore = 0
-    playerScore = 0
-}
-
-playGame()
+const buttons = querySelectorAll("button");
+buttons.addEventListener("click", playRound(computerPlay(),button.id));
