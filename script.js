@@ -1,3 +1,5 @@
+let playerScore = 0;
+let computerScore = 0;
 
 // selects rock, paper or scissors for computer 
 function computerPlay() {
@@ -24,16 +26,26 @@ function playRound(computerChoice,playerChoice) {
     (computerChoice === 'scissors' && playerChoice === 'paper'||
     (computerChoice === 'paper' && playerChoice === 'rock'))) { //checks if computer has better hand
         console.log(`Computer: ${computerChoice} Player: ${playerChoice} - Computer wins!`);
-        ++computerScore;
+        computerScore++
     } else if ((playerChoice === 'rock' && computerChoice === 'scissors')||
     (playerChoice === 'scissors' && computerChoice === 'paper'||
     (playerChoice === 'paper' && computerChoice === 'rock'))) { //checks if player has better hand
         console.log(`Computer: ${computerChoice} Player: ${playerChoice} - Player wins!`);
-        ++playerScore;
+        playerScore ++
     } else {
         console.log(`Computer: ${computerChoice} Player: ${playerChoice} I\'m sorry, I did not understand that.`)
     }
 }
 
-const buttons = querySelectorAll("button");
-buttons.addEventListener("click", playRound(computerPlay(),button.id));
+function updateScore() {
+    const scoreLine = document.querySelector(".scoreLine");
+    scoreLine.textContent = `Computer: ${computerScore} - Player: ${playerScore}`;
+}
+
+
+const buttons = document.getElementsByClassName("playerChoice");
+Array.from(buttons).forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(computerPlay(),button.id)
+        updateScore();
+    })})
