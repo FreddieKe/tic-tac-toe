@@ -20,20 +20,21 @@ function playerPlay() {
 }
 
 function playRound(computerChoice,playerChoice) {
+    const resultLine = document.querySelector(".resultLine")
     if (computerChoice === playerChoice) { //checks if computer and player have  same hand
-        console.log(`Computer: ${computerChoice} Player: ${playerChoice} - It\'s a draw!`);
+        resultLine.textContent = `Computer: ${computerChoice} Player: ${playerChoice} - It\'s a draw!`;
     } else if ((computerChoice === 'rock' && playerChoice === 'scissors')||
     (computerChoice === 'scissors' && playerChoice === 'paper'||
     (computerChoice === 'paper' && playerChoice === 'rock'))) { //checks if computer has better hand
-        console.log(`Computer: ${computerChoice} Player: ${playerChoice} - Computer wins!`);
+        resultLine.textContent = `Computer: ${computerChoice} Player: ${playerChoice} - Computer wins!`;
         computerScore++
     } else if ((playerChoice === 'rock' && computerChoice === 'scissors')||
     (playerChoice === 'scissors' && computerChoice === 'paper'||
     (playerChoice === 'paper' && computerChoice === 'rock'))) { //checks if player has better hand
-        console.log(`Computer: ${computerChoice} Player: ${playerChoice} - Player wins!`);
+        resultLine.textContent = `Computer: ${computerChoice} Player: ${playerChoice} - Player wins!`;
         playerScore ++
     } else {
-        console.log(`Computer: ${computerChoice} Player: ${playerChoice} I\'m sorry, I did not understand that.`)
+        resultLine.textContent = `Computer: ${computerChoice} Player: ${playerChoice} I\'m sorry, I did not understand that.`
     }
 }
 
