@@ -38,15 +38,28 @@ function playRound(computerChoice,playerChoice) {
     }
 }
 
-function updateScore() {
+function updateScore() { //updatesScore
     const scoreLine = document.querySelector(".scoreLine");
     scoreLine.textContent = `Computer: ${computerScore} - Player: ${playerScore}`;
 }
 
+function displayPlayerWin() {
+    const scoreLine = document.querySelector(".scoreLine");
+    scoreLine.textContent = `Computer: ${computerScore} - Player: ${playerScore} - Player wins!`;
+}
 
+function displayComputerWin() {
+    const scoreLine = document.querySelector(".scoreLine");
+    scoreLine.textContent = `Computer: ${computerScore} - Player: ${playerScore} - Computer wins!`;
+}
 const buttons = document.getElementsByClassName("playerChoice");
 Array.from(buttons).forEach((button) => {
     button.addEventListener('click', () => {
+        if (playerScore >= 5) {
+            displayPlayerWin();
+        } else if (computerScore >= 5) {
+            displayerComputerWin();
+        } else {
         playRound(computerPlay(),button.id)
         updateScore();
-    })})
+    }})})
